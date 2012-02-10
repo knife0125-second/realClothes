@@ -80,12 +80,29 @@
 
 
 
-
+/*
 exports.index = function(req, res){
     res.render('hogehoge', { num: clothData.length, data:'fuck',list: clothData });
 };
+*/
 
+exports.index = function(req, res){
+    res.render('index', {item: 'search'});
+};
 
+exports.hogehoge = function(req, res){
+  var list = clothData;
+  var num = clothData.length;
+
+  if(req.query.first && num == 0){
+    res.render('index', {item: 'noitem'});
+  } else {
+    res.render('hogehoge', { num: num,
+                             list: list,
+                             shoulder: userDataMin
+                            });
+  }
+};
 
 /*
   var arr = require('./test.js');
